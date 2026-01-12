@@ -4,7 +4,7 @@ from etl.utils.logger import logger
 import mysql.connector
 
 
-def create_database_if_not_exists():
+def Create_Database_if_not_Exists():
     """
     Creates the target database if it does not exist.
     Safe to run multiple times.

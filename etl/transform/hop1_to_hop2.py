@@ -1,6 +1,6 @@
 from config.db_connection import get_connection
 
-def load_hop2():
+def Load_DTL_DW_HOP_2():
     conn = get_connection()
     cursor = conn.cursor()
     print(f"Loading Data from DTL_DW_HOP1_Customers to DTL_DW_HOP2_Customers ...")

@@ -2,7 +2,7 @@ import pandas as pd
 from etl.extract.csv_reader import read_csv
 from etl.load.load_staging import load_dataframe
 
-def load_sales():
+def Load_Sales_Data():
     files = {
         "Sales_Data_2020.csv": 2020,
         "Sales_Data_2021.csv": 2021,

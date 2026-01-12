@@ -1,6 +1,6 @@
 from config.db_connection import get_connection
 
-def load_datamart():
+def Load_FL_Data_Mart():
     conn = get_connection()
     cursor = conn.cursor()
     print(f"Loading Data from  DTL_DW_HOP2 to  DataMart/Final Layer ...")

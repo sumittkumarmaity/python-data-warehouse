@@ -1,6 +1,6 @@
 from config.db_connection import get_connection
 
-def load_hop1():
+def Load_DTL_DW_HOP_1():
     conn = get_connection()
     cursor = conn.cursor()
 
