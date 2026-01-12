@@ -1,0 +1,29 @@
+# Byte-code files
+*.pyc
+__pycache__/
+
+# Distribution / packaging
+.Python
+build/
+dist/
+wheels/
+*.egg-info/
+
+# Virtual environment
+# Option 1: Ignore a common 'venv' directory in the project root
+venv/
+# Option 2: Ignore a common '.venv' directory in the project root
+.venv/
+
+# Editors and IDEs
+.idea/          # For PyCharm/IntelliJ
+.vscode/        # For VS Code
+*.swp           # For Vim
+
+# OS-specific files
+.DS_Store       # macOS
+Thumbs.db       # Windows
+
+# Misc files
+*.log
+.env            # Environment variables (often sensitive)
