@@ -54,7 +54,7 @@ for csv, table in master_files.items():
 print("ETL :: LOADING SALES DATA")
 load_sales()
 
-# STEP 4: Transform layers
+# STEP 4: Transform Layers
 print("ETL :: Data Transformation Layer ​:: Data Warehouse ")
 print("================================================================")
 print("ETL :: LOADING HOP-1 DATA")
@@ -73,5 +73,5 @@ print("================================================================")
 user_input = input("Do you want to generate reports ? (yes/no): ").strip().lower()
 
 if user_input in ("yes", "y"):
-    print("[REPORT] Launching dashboard...")
+    print("[REPORT] Launching Dashboard...")
     
