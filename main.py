@@ -6,6 +6,7 @@ from etl.load.load_sales import Load_Sales_Data
 from etl.transform.staging_to_hop1 import Load_DTL_DW_HOP_1
 from etl.transform.hop1_to_hop2 import Load_DTL_DW_HOP_2
 from etl.transform.hop_to_datamart import Load_FL_Data_Mart
+from etl.utils.log_db_loader import Load_Logs_to_DB
 
 print("================================================================")
 print("ETL :: PIPELINE STARTED")
@@ -37,11 +38,15 @@ Load_DTL_DW_HOP_1()
 
 # STEP 4.2: Load HOP-2 Data
 print("ETL :: LOADING HOP-2 DATA")
-# Load_DTL_DW_HOP_2()
+Load_DTL_DW_HOP_2()
 
 # STEP 5: Load Data-Mart/Final Layer
 print("ETL :: LOADING DATA-MART/FINAL LAYER DATA")
-# Load_FL_Data_Mart()
+Load_FL_Data_Mart()
+
+# STEP 6: Load ETL Logs into Database
+print("ETL :: LOADING ETL LOGS INTO DATABASE")
+Load_Logs_to_DB()
 
 print("================================================================")
 print("ETL :: PIPELINE COMPLETED SUCCESSFULLY !! ")

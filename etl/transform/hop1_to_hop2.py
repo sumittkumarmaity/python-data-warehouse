@@ -1,19 +1,22 @@
-from config.db_connection import get_connection
+from etl.utils.logger import logger
+from etl.utils.sql_runner import run_sql_file
 
 def Load_DTL_DW_HOP_2():
-    conn = get_connection()
-    cursor = conn.cursor()
-    print(f"Loading Data from DTL_DW_HOP1_Customers to DTL_DW_HOP2_Customers ...")
-    cursor.execute("""
-        INSERT INTO DTL_DW_HOP2_Customers
-        SELECT * FROM DTL_DW_HOP1_Customers
-    """)
-    print(f"Loading Data from DTL_DW_HOP1_Sales to DTL_DW_HOP2_Sales ...")
-    cursor.execute("""
-        INSERT INTO DTL_DW_HOP2_Sales
-        SELECT * FROM DTL_DW_HOP1_Sales
-    """)
+   
+    sql_files  = {
+        "sql/03_dw_hop2/load_dtl_dw_hop2_customers.sql": 'TBL_DTL_DW_HOP2_Customers',
+        "sql/03_dw_hop2/load_dtl_dw_hop2_sales.sql": 'TBL_DTL_DW_HOP2_Sales'
+    }
 
-    conn.commit()
-    cursor.close()
-    conn.close()
+    try:
+        for file, table in sql_files.items():
+            print(f"Loading... {table} Data using : {file}")
+            logger.info(f"Loading... {table} Data using : {file}")
+            run_sql_file(file)
+
+        logger.info(f"Data successfully loaded into HOP-2 layer.")
+    except Exception as e:
+        logger.error(f"Error executing SQL script: {e}")
+        raise
+    finally:
+        logger.info(f"HOP-2 Data Load Process Completed.")
