@@ -26,14 +26,11 @@ def normalize_nulls(df):
 def load_dataframe(table, df):
     conn = get_connection()
     cursor = conn.cursor()
-
-    # 🔹 Normalize data BEFORE insert
     df = normalize_dates(df)
     df = normalize_nulls(df)
-
-    cols = ",".join(df.columns)
-    placeholders = ",".join(["%s"] * len(df.columns))
-    sql = f"INSERT INTO {table} ({cols}) VALUES ({placeholders})"
+    table_cols = ",".join(df.columns)
+    table_values = ",".join(["%s"] * len(df.columns))
+    sql = f"INSERT INTO {table} ({table_cols}) VALUES ({table_values})"
 
     for _, row in df.iterrows():
         cursor.execute(sql, tuple(row))

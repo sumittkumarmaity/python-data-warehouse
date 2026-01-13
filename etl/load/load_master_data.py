@@ -4,11 +4,11 @@ from etl.utils.logger import logger
 
 def Load_Master_Data():
     master_files = {
-        "Customers.csv": "staging_Customers",
-        "Products.csv": "staging_Products",
-        "Product_Categories.csv": "staging_Product_Categories",
-        "Product_Subcategories.csv": "staging_Product_Subcategories",
-        "Territory.csv": "staging_Territory"
+        "Customers.csv": "TBL_Staging_Customers",
+        "Products.csv": "TBL_Staging_Products",
+        "Product_Categories.csv": "TBL_Staging_Product_Categories",
+        "Product_Subcategories.csv": "TBL_Staging_Product_Subcategories",
+        "Territory.csv": "TBL_Staging_Territory"
     }
 
     logger.info(f"ETL :: LOADING MASTER DATA [CUSTOMERS, PRODUCTS, PRODUCT_CATEGORIES, TERRITORY]")

@@ -17,4 +17,4 @@ def Load_Sales_Data():
         frames.append(df)
 
     final_df = pd.concat(frames)
-    load_dataframe("staging_Sales", final_df)
+    load_dataframe("TBL_Staging_Sales", final_df)

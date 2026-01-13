@@ -1,8 +1,8 @@
 -- =========================
 -- STAGING : CUSTOMERS
 -- =========================
-CREATE TABLE IF NOT EXISTS staging_Customers (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS TBL_Staging_Customers (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
     CustomerKey INT,
     Prefix VARCHAR(10),
     FirstName VARCHAR(50),
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS staging_Customers (
 -- =========================
 -- STAGING : PRODUCTS
 -- =========================
-CREATE TABLE IF NOT EXISTS staging_Products (
+CREATE TABLE IF NOT EXISTS TBL_Staging_Products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     ProductKey INT,
     ProductSubcategoryKey INT,
@@ -39,8 +39,8 @@ CREATE TABLE IF NOT EXISTS staging_Products (
 -- =========================
 -- STAGING : PRODUCT CATEGORIES
 -- =========================
-CREATE TABLE IF NOT EXISTS staging_Product_Categories (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS TBL_Staging_Product_Categories (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
     ProductCategoryKey INT,
     CategoryName VARCHAR(100)
 );
@@ -48,8 +48,8 @@ CREATE TABLE IF NOT EXISTS staging_Product_Categories (
 -- =========================
 -- STAGING : PRODUCT SUBCATEGORIES
 -- =========================
-CREATE TABLE IF NOT EXISTS staging_Product_Subcategories (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS TBL_Staging_Product_Subcategories (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
     ProductSubcategoryKey INT,
     SubcategoryName VARCHAR(100),
     ProductCategoryKey INT
@@ -58,8 +58,8 @@ CREATE TABLE IF NOT EXISTS staging_Product_Subcategories (
 -- =========================
 -- STAGING : TERRITORY
 -- =========================
-CREATE TABLE IF NOT EXISTS staging_Territory (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS TBL_Staging_Territory (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
     SalesTerritoryKey INT,
     Region VARCHAR(50),
     Country VARCHAR(50),
@@ -69,8 +69,8 @@ CREATE TABLE IF NOT EXISTS staging_Territory (
 -- =========================
 -- STAGING : SALES
 -- =========================
-CREATE TABLE IF NOT EXISTS staging_Sales (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS TBL_Staging_Sales (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
     OrderDate DATE,
     StockDate DATE,
     OrderNumber VARCHAR(50),
@@ -81,14 +81,3 @@ CREATE TABLE IF NOT EXISTS staging_Sales (
     OrderQuantity INT,
     SalesYear INT
 );
-
-
--- =========================
--- STAGING INDEXES
--- =========================
-CREATE INDEX idx_stg_customerkey ON staging_Customers (CustomerKey);
-CREATE INDEX idx_stg_productkey ON staging_Products (ProductKey);
-CREATE INDEX idx_stg_subcategorykey ON staging_Product_Subcategories (ProductSubcategoryKey);
-CREATE INDEX idx_stg_sales_customer ON staging_Sales (CustomerKey);
-CREATE INDEX idx_stg_sales_product ON staging_Sales (ProductKey);
-CREATE INDEX idx_stg_sales_date ON staging_Sales (OrderDate);

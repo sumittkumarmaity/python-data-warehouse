@@ -1,117 +1,78 @@
 -- =========================
--- DW HOP-1 : CUSTOMERS
+-- HOP1 : CUSTOMERS
 -- =========================
-CREATE TABLE IF NOT EXISTS DTL_DW_HOP1_Customers LIKE staging_Customers;
-
--- =========================
--- DW HOP-1 : PRODUCTS
--- =========================
-CREATE TABLE IF NOT EXISTS DTL_DW_HOP1_Products LIKE staging_Products;
-
--- =========================
--- DW HOP-1 : PRODUCT CATEGORIES
--- =========================
-CREATE TABLE IF NOT EXISTS DTL_DW_HOP1_Product_Categories LIKE staging_Product_Categories;
-
--- =========================
--- DW HOP-1 : PRODUCT SUBCATEGORIES
--- =========================
-CREATE TABLE IF NOT EXISTS DTL_DW_HOP1_Product_Subcategories LIKE staging_Product_Subcategories;
+CREATE TABLE IF NOT EXISTS TBL_DTL_DW_HOP1_Customers (
+    CustomerKey INT PRIMARY KEY,
+    CustomerName VARCHAR(255),
+    BirthDate DATE,
+    Age INT,
+    MaritalStatus VARCHAR(20),
+    EmailAddress VARCHAR(255),
+    AnnualIncome DECIMAL(12,2),
+    TotalChildren INT,
+    EducationLevel VARCHAR(100),
+    Occupation VARCHAR(100),
+    HomeOwner VARCHAR(10)
+);
 
 -- =========================
--- DW HOP-1 : TERRITORY
+-- HOP1 : PRODUCTS
 -- =========================
-CREATE TABLE IF NOT EXISTS DTL_DW_HOP1_Territory LIKE staging_Territory;
-
--- =========================
--- DW HOP-1 : SALES YEARS
--- =========================
-CREATE TABLE IF NOT EXISTS DTL_DW_HOP1_Sales_Years LIKE staging_Sales_Years;
-
--- =========================
--- DW HOP-1 : SALES
--- =========================
-CREATE TABLE IF NOT EXISTS DTL_DW_HOP1_Sales LIKE staging_Sales;
-
-
--- ==================================================
--- -- INDEXES REQUIRED FOR FOREIGN KEYS
--- -- ==================================================
--- -- Customers
--- DROP INDEX IF EXISTS idx_hop1_customerkey
--- ON DTL_DW_HOP1_Customers;
-
--- CREATE INDEX idx_hop1_customerkey
--- ON DTL_DW_HOP1_Customers (CustomerKey);
-
--- -- Products
--- DROP INDEX IF EXISTS idx_hop1_productkey
--- ON DTL_DW_HOP1_Products;
-
--- CREATE INDEX idx_hop1_productkey
--- ON DTL_DW_HOP1_Products (ProductKey);
-
--- -- Territory
--- DROP INDEX IF EXISTS idx_hop1_territorykey
--- ON DTL_DW_HOP1_Territory;
-
-
-
-
+CREATE TABLE IF NOT EXISTS TBL_DTL_DW_HOP1_Products (
+    ProductKey INT PRIMARY KEY,
+    ProductSubcategoryKey INT,
+    ProductSKU VARCHAR(50),
+    ProductName VARCHAR(100),
+    ModelName VARCHAR(100),
+    ProductDescription TEXT,
+    ProductColor VARCHAR(30),
+    ProductSize VARCHAR(20),
+    ProductStyle VARCHAR(30),
+    ProductCost DECIMAL(12,2),
+    ProductPrice DECIMAL(12,2)
+);
 
 -- =========================
--- HOP-1 PRIMARY KEYS
+-- HOP1 : PRODUCT CATEGORIES
 -- =========================
--- ALTER TABLE DTL_DW_HOP1_Customers
--- ADD PRIMARY KEY (id);
-
--- ALTER TABLE DTL_DW_HOP1_Products
--- ADD PRIMARY KEY (id);
-
--- ALTER TABLE DTL_DW_HOP1_Product_Categories
--- ADD PRIMARY KEY (id);
-
--- ALTER TABLE DTL_DW_HOP1_Product_Subcategories
--- ADD PRIMARY KEY (id);
-
--- ALTER TABLE DTL_DW_HOP1_Territory
--- ADD PRIMARY KEY (id);
-
--- ALTER TABLE DTL_DW_HOP1_Sales
--- ADD PRIMARY KEY (id);
+CREATE TABLE IF NOT EXISTS TBL_DTL_DW_HOP1_Product_Categories (
+    ProductCategoryKey INT ,
+    CategoryName VARCHAR(100)
+);
 
 -- =========================
--- HOP-1 FOREIGN KEYS
+-- HOP1 : PRODUCT SUBCATEGORIES
 -- =========================
--- ALTER TABLE DTL_DW_HOP1_Product_Subcategories
--- ADD CONSTRAINT fk_hop1_subcat_category
--- FOREIGN KEY (ProductCategoryKey)
--- REFERENCES DTL_DW_HOP1_Product_Categories (ProductCategoryKey);
-
--- ALTER TABLE DTL_DW_HOP1_Sales
--- ADD CONSTRAINT fk_hop1_sales_customer
--- FOREIGN KEY (CustomerKey)
--- REFERENCES DTL_DW_HOP1_Customers (CustomerKey);
-
--- ALTER TABLE DTL_DW_HOP1_Sales
--- ADD CONSTRAINT fk_hop1_sales_product
--- FOREIGN KEY (ProductKey)
--- REFERENCES DTL_DW_HOP1_Products (ProductKey);
-
--- ALTER TABLE DTL_DW_HOP1_Sales
--- ADD CONSTRAINT fk_hop1_sales_territory
--- FOREIGN KEY (TerritoryKey)
--- REFERENCES DTL_DW_HOP1_Territory (SalesTerritoryKey);
-
-
-
-
+CREATE TABLE IF NOT EXISTS TBL_DTL_DW_HOP1_Product_Subcategories (
+    ProductSubcategoryKey INT PRIMARY KEY,
+    SubcategoryName VARCHAR(100),
+    ProductCategoryKey INT
+);
 
 -- =========================
--- HOP-1 INDEXES
+-- HOP1 : TERRITORY
 -- =========================
--- CREATE INDEX idx_hop1_customerkey ON DTL_DW_HOP1_Customers (CustomerKey);
--- CREATE INDEX idx_hop1_productkey ON DTL_DW_HOP1_Products (ProductKey);
--- CREATE INDEX idx_hop1_sales_customer ON DTL_DW_HOP1_Sales (CustomerKey);
--- CREATE INDEX idx_hop1_sales_product ON DTL_DW_HOP1_Sales (ProductKey);
--- CREATE INDEX idx_hop1_sales_date ON DTL_DW_HOP1_Sales (OrderDate);
+CREATE TABLE IF NOT EXISTS TBL_DTL_DW_HOP1_Territory (
+    SalesTerritoryKey INT PRIMARY KEY,
+    Region VARCHAR(50),
+    Country VARCHAR(50),
+    Continent VARCHAR(50)
+);
+
+-- =========================
+-- HOP1 : SALES
+-- =========================
+CREATE TABLE IF NOT EXISTS TBL_DTL_DW_HOP1_Sales (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    CustomerKey INT,
+    OrderDate DATE,
+    StockDate DATE,
+    OrderNumber VARCHAR(50),
+    ProductKey INT,
+    TerritoryKey INT,
+    OrderLineItem INT,
+    OrderQuantity INT,
+    SalesYear INT,
+    Sales DECIMAL(12,2),
+    Profit DECIMAL(12,2)
+);

@@ -37,19 +37,19 @@ Load_DTL_DW_HOP_1()
 
 # STEP 4.2: Load HOP-2 Data
 print("ETL :: LOADING HOP-2 DATA")
-Load_DTL_DW_HOP_2()
+# Load_DTL_DW_HOP_2()
 
 # STEP 5: Load Data-Mart/Final Layer
 print("ETL :: LOADING DATA-MART/FINAL LAYER DATA")
-Load_FL_Data_Mart()
+# Load_FL_Data_Mart()
 
 print("================================================================")
 print("ETL :: PIPELINE COMPLETED SUCCESSFULLY !! ")
 print("================================================================")
 
 # Optional: Prompt for Report Generation 
-user_input = input("Do you want to generate reports ? (yes/no): ").strip().lower()
+# user_input = input("Do you want to generate reports ? (yes/no): ").strip().lower()
 
-if user_input in ("yes", "y"):
-    print("[REPORT] Launching Dashboard...")
+# if user_input in ("yes", "y"):
+#     print("[REPORT] Launching Dashboard...")
     
