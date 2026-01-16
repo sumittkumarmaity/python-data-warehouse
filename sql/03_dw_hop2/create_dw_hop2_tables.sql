@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS TBL_DTL_DW_HOP2_Customers (
     BirthDate DATE,
     Age INT,
     MaritalStatus VARCHAR(20),
+    Gender VARCHAR(20),
     EmailAddress VARCHAR(255),
     AnnualIncome DECIMAL(12,2),
     TotalChildren INT,

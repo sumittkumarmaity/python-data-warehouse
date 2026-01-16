@@ -11,7 +11,7 @@ def run_sql_file(path):
     try:
         # IMPORTANT: multi=True prevents Python crash
         for result in cursor.execute(sql_script, multi=True):
-            print(f"Running query: {result.statement}")
+            # print(f"Running query: {result.statement}")
             pass
 
         conn.commit()

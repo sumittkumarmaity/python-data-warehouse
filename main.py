@@ -7,54 +7,59 @@ from etl.transform.staging_to_hop1 import Load_DTL_DW_HOP_1
 from etl.transform.hop1_to_hop2 import Load_DTL_DW_HOP_2
 from etl.transform.hop_to_datamart import Load_FL_Data_Mart
 from etl.utils.log_db_loader import Load_Logs_to_DB
+from reports.descriptive_dashboard import Load_DESCRIPTIVE_ANALYTICS_DASHBOARD
 
-print("================================================================")
-print("ETL :: PIPELINE STARTED")
-print("================================================================")
-# STEP 0: Ensure DB Exists
-Create_Database_if_not_Exists()
-print("Database Ready.")
+# Prompt for ETL Process / Data Load
+user_input_for_etl = input("Do You Want to Start ETL Process / Data Load ? (Yes/No): ").strip().lower()
 
-# STEP 1: Run SQL Scripts
-print("ETL :: Initialization :: Script Generation Started ...")
-print("================================================================")
-SQL_Auto_Table_Generator()
-print("ETL :: Initialization :: Script Generation Completed.")
+if user_input_for_etl in ("yes", "y"):
+    print("================================================================")
+    print("ETL :: PIPELINE STARTED")
+    print("================================================================")
+    # STEP 0: Ensure DB Exists
+    Create_Database_if_not_Exists()
+    print("Database Ready.")
 
-# STEP 2: Load Master Data
-print("ETL :: LOADING MASTER DATA")
-Load_Master_Data()
+    # STEP 1: Run SQL Scripts
+    print("ETL :: Initialization :: Script Generation Started ...")
+    print("================================================================")
+    SQL_Auto_Table_Generator()
+    print("ETL :: Initialization :: Script Generation Completed.")
 
-# STEP 3: Load Sales Data
-print("ETL :: LOADING SALES DATA")
-Load_Sales_Data()
+    # STEP 2: Load Master Data
+    print("ETL :: LOADING MASTER DATA")
+    Load_Master_Data() 
 
-# STEP 4: Transform Layers
-print("ETL :: Data Transformation Layer ​:: Data Warehouse ")
-print("================================================================")
-# STEP 4.1: Load HOP-1 Data
-print("ETL :: LOADING HOP-1 DATA")
-Load_DTL_DW_HOP_1()
+    # STEP 3: Load Sales Data
+    print("ETL :: LOADING SALES DATA")
+    Load_Sales_Data()
 
-# STEP 4.2: Load HOP-2 Data
-print("ETL :: LOADING HOP-2 DATA")
-Load_DTL_DW_HOP_2()
+    # STEP 4: Transform Layers
+    print("ETL :: Data Transformation Layer :: Data Warehouse ")
+    print("================================================================")
+    # STEP 4.1: Load HOP-1 Data
+    print("ETL :: LOADING HOP-1 DATA")
+    Load_DTL_DW_HOP_1()
 
-# STEP 5: Load Data-Mart/Final Layer
-print("ETL :: LOADING DATA-MART/FINAL LAYER DATA")
-Load_FL_Data_Mart()
+    # STEP 4.2: Load HOP-2 Data
+    print("ETL :: LOADING HOP-2 DATA")
+    Load_DTL_DW_HOP_2()
 
-# STEP 6: Load ETL Logs into Database
-print("ETL :: LOADING ETL LOGS INTO DATABASE")
-Load_Logs_to_DB()
+    # STEP 5: Load Data-Mart/Final Layer
+    print("ETL :: LOADING DATA-MART/FINAL LAYER DATA")
+    Load_FL_Data_Mart()
 
-print("================================================================")
-print("ETL :: PIPELINE COMPLETED SUCCESSFULLY !! ")
-print("================================================================")
+    # STEP 6: Load ETL Logs into Database
+    print("ETL :: LOADING ETL LOGS INTO DATABASE")
+    Load_Logs_to_DB()
 
-# Optional: Prompt for Report Generation 
-# user_input = input("Do you want to generate reports ? (yes/no): ").strip().lower()
+    print("================================================================")
+    print("ETL :: PIPELINE COMPLETED SUCCESSFULLY !! ")
+    print("================================================================")
 
-# if user_input in ("yes", "y"):
-#     print("[REPORT] Launching Dashboard...")
-    
+# Prompt for Report Generation / Dashboard Launch
+user_input = input("Do You Want to Generate Reports ? (Yes/No): ").strip().lower()
+
+if user_input in ("yes", "y"):
+    print("[REPORT] :: Launching Dashboard...")
+    Load_DESCRIPTIVE_ANALYTICS_DASHBOARD()

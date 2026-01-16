@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS TBL_Staging_Customers (
     LastName VARCHAR(50),
     BirthDate DATE,
     MaritalStatus VARCHAR(10),
-    Gender VARCHAR(10),
+    Gender VARCHAR(20),
     EmailAddress VARCHAR(100),
     AnnualIncome DECIMAL(12,2),
     TotalChildren INT,

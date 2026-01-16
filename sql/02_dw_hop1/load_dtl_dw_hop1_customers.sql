@@ -6,6 +6,7 @@ INSERT INTO TBL_DTL_DW_HOP1_Customers
     BirthDate,
     Age,
     MaritalStatus,
+    Gender,
     EmailAddress,
     AnnualIncome,
     TotalChildren,
@@ -27,10 +28,15 @@ SELECT
         CURDATE()
     ) AS Age,
     CASE
-        WHEN sc.Gender IS NULL OR sc.Gender = 'NA' THEN 'Did not Disclose'
+        WHEN sc.MaritalStatus IS NULL OR sc.MaritalStatus = 'NA' THEN 'Did not Disclose'
         WHEN sc.MaritalStatus = 'S' THEN 'Single'
         ELSE 'Married'
     END AS MaritalStatus,
+    CASE
+        WHEN sc.Gender IS NULL OR sc.Gender = 'NA' THEN 'Did not Disclose'
+        WHEN sc.Gender = 'M' THEN 'Male'
+        ELSE 'Female'
+    END AS Gender,
     sc.EmailAddress,
     sc.AnnualIncome,
     sc.TotalChildren,
