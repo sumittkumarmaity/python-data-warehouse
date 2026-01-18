@@ -1,5 +1,6 @@
 from config.db_connection import get_connection
 
+# Function to load data from the Data Transformation Layer (DTL) to the Data Mart/Final Layer
 def Load_FL_Data_Mart():
     conn = get_connection()
     cursor = conn.cursor()

@@ -1,6 +1,7 @@
 from etl.utils.logger import logger
 from etl.utils.sql_runner import run_sql_file
 
+# Function to load detailed data into HOP-2 layer
 def Load_DTL_DW_HOP_2():
    
     sql_files  = {

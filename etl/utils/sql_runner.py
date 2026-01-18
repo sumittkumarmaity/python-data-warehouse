@@ -1,6 +1,7 @@
 from config.db_connection import get_connection
 from etl.utils.logger import logger
 
+# Function to run SQL script from a file
 def run_sql_file(path):
     conn = get_connection()
     cursor = conn.cursor()
@@ -26,6 +27,7 @@ def run_sql_file(path):
         cursor.close()
         conn.close()
 
+# Function to automatically generate tables by executing multiple SQL scripts
 def SQL_Auto_Table_Generator():
     sql_files = [
         "sql/01_staging/create_staging_tables.sql",

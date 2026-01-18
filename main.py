@@ -61,5 +61,5 @@ if user_input_for_etl in ("yes", "y"):
 user_input = input("Do You Want to Generate Reports ? (Yes/No): ").strip().lower()
 
 if user_input in ("yes", "y"):
-    print("[REPORT] :: Launching Dashboard...")
+    print("[Report] :: Launching Dashboard...")
     Load_DESCRIPTIVE_ANALYTICS_DASHBOARD()

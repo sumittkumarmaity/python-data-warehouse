@@ -1,12 +1,8 @@
 from config.db_connection import get_connection
 import pandas as pd
 
-
+# Normalize all date-like columns to YYYY-MM-DD
 def normalize_dates(df):
-    """
-    Normalize all date-like columns to YYYY-MM-DD
-    Handles mixed formats safely (new Pandas default behavior)
-    """
     for col in df.columns:
         if "date" in col.lower():
             df[col] = pd.to_datetime(
@@ -15,14 +11,11 @@ def normalize_dates(df):
             ).dt.date
     return df
 
-
+# Replace NaN / NaT with None (MySQL compatible)
 def normalize_nulls(df):
-    """
-    Replace NaN / NaT with None (MySQL compatible)
-    """
     return df.where(pd.notnull(df), None)
 
-
+# Load DataFrame into staging table
 def load_dataframe(table, df):
     conn = get_connection()
     cursor = conn.cursor()

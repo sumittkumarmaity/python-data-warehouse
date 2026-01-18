@@ -2,10 +2,8 @@ from config.db_connection import get_connection
 from datetime import datetime
 import os
 
+# Function to load ETL logs into the database
 def Load_Logs_to_DB():
-    """
-    Reads ETL log file and inserts logs into ETL_EXECUTION_LOGS table
-    """
     log_file_path  = os.path.join('logs', 'etl_execution.log')
     conn = get_connection()
     cursor = conn.cursor()
@@ -18,7 +16,6 @@ def Load_Logs_to_DB():
     with open(log_file_path, "r", encoding="utf-8") as file:
         for line in file:
             line = line.strip()
-
             if not line or "||" not in line:
                 continue
 
@@ -29,7 +26,6 @@ def Load_Logs_to_DB():
                 )
                 log_type = log_type.strip()
                 message = message.strip()
-
                 cursor.execute(
                     insert_sql,
                     (log_datetime, log_type, message)

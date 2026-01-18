@@ -2,6 +2,7 @@ import pandas as pd
 from etl.extract.csv_reader import read_csv
 from etl.load.load_staging import load_dataframe
 
+# Function to load sales data from multiple CSV files into a staging table
 def Load_Sales_Data():
     files = {
         "Sales_Data_2020.csv": 2020,

@@ -3,13 +3,8 @@ from config.env_loader import get_env
 from etl.utils.logger import logger
 import mysql.connector
 
-
+# Function to create the database if it does not exist
 def Create_Database_if_not_Exists():
-    """
-    Creates the target database if it does not exist.
-    Safe to run multiple times.
-    """
-
     db_name = get_env("DB_NAME")
     logger.info(f"Ensuring database '{db_name}' exists...")
     conn = None
@@ -17,7 +12,6 @@ def Create_Database_if_not_Exists():
 
     try:
         logger.info("Checking database existence...")
-
         # Connect WITHOUT database
         conn = get_server_connection()
         # print("Connected to MySQL server.", conn)

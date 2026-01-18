@@ -2,6 +2,7 @@ from etl.extract.csv_reader import read_csv
 from etl.load.load_staging import load_dataframe
 from etl.utils.logger import logger
 
+# Function to load master data from CSV files into staging tables
 def Load_Master_Data():
     master_files = {
         "Customers.csv": "TBL_Staging_Customers",

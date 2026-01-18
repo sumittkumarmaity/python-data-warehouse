@@ -3,6 +3,7 @@ import os
 
 SOURCE_PATH = "source_data"
 
+# Function to read a CSV file with multiple encoding attempts
 def read_csv(file_name):
     file_path = os.path.join(SOURCE_PATH, file_name)
 
